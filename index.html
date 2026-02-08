@@ -19,6 +19,10 @@
     polaris-chip {
       margin: 16px;
     }
+    my-card {
+      --my-card-background-color: lightblue;
+      --my-card-fancy-background-color: red;
+    }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -29,10 +33,37 @@
   <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
   <polaris-chip title="Faculty and Staff"></polaris-chip>
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
-  <polaris-chip title="Grants and donations"></polaris-chip>
+  <polaris-chip title="Grants"></polaris-chip>
+  <polaris-chip title="example"></polaris-chip>
+  <polaris-chip title="example"></polaris-chip>
+  <polaris-chip title="example"></polaris-chip>
+  <polaris-chip title="example"></polaris-chip>
+  <span>Just a span for comparison</span>
 
   <h1>my-card</h1>
   <my-card></my-card>
+  <my-card title = "Lake Street Dive" 
+    image = "https://www.lakestreetdive.com/meta.jpg"
+    alt = "a band posing for a photo cast by shadows" 
+    body = "Lake Street Dive is an American multi-genre band that was formed in 2004 at the New England Conservatory of Music in Boston.">
+  </my-card>
+  <my-card title = "Melt" 
+    image = "https://static.wixstatic.com/media/54f792_acefb8afc63740e0bf73abf39c0cf45c~mv2.png/v1/fill/w_568,h_574,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/54f792_acefb8afc63740e0bf73abf39c0cf45c~mv2.png"
+    alt = "three young people in front of a brick wall" 
+    body = "Melt is an American band formed in New York City in 2017, consisting of vocalist Veronica Stewart-Frommer, guitarist Marlo Shankweiler and bassist Lucas Saur.">
+  </my-card>
+  <my-card title = "Olivia Dean" 
+    image = "https://upload.wikimedia.org/wikipedia/commons/3/3e/Olivia_Dean_-_Sabrina_Carpenter_at_BST_Hyde_Park_-_20250706_-_115_%28cropped%29_%28cropped%29.jpg"
+    alt = "singer holding a microphone" 
+    body = "Olivia Lauryn Dean (born 14 March 1999) is a British singer and songwriter. She has released two studio albums, Messy (2023) and The Art of Loving (2025), as well as two live albums and five EPs. Her accolades include a Grammy Award, and nominations for eight Brit Awards and the Mercury Prize.">
+  </my-card>
+  <my-card title = "Caamp" 
+    image = "https://nelsonvillefest.org/wp-content/uploads/2020/07/caamp_sq.jpg"
+    alt = "three men standing in front of a brick wall with hats" 
+    body = "The band began as a project between childhood friends Taylor Meier and Evan Westfall, who met at a summer camp while they were middle school students.">
+  </my-card>
+
+
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
