@@ -19,19 +19,21 @@ export class MyCard extends LitElement {
     this.alt = "members of a band posing for a photo"
     this.body = "Couch is a Boston-based pop-funk band known for blending indie-pop, soul, and rock with influences from jazz and musical theatre.";
     this.button = "https://hax.psu.edu";
+    this.fancy = false;
   }
 
   static get styles() {
     return css`
-      :host {
+    :host([fancy]) {
+      display: block;
+      background-color: pink;
+      border: 2px solid fuchsia;
+      box-shadow: 10px 5px 5px red;
+    }
         .picture {
           width: 268px;
           border-radius: 8px;
           margin-bottom: 16px;
-        }
-
-        .card.fancy {
-          background-color: var(--my-card-fancy-background-color, #88D3DA);
         }
 
         .control {
@@ -93,7 +95,6 @@ export class MyCard extends LitElement {
             font-size: 12px;
           }
         }
-      }
     `;
   }
 
@@ -102,10 +103,10 @@ export class MyCard extends LitElement {
       <html>        
           <div class="wrapper">
             <div class="card">
-              <img class="picture" src="${this.image}" />
+              <img class="picture" src="${this.image}" alt="${this.alt}" />
               <div>
                 <h1 class="heading">${this.title}</h1>
-                <p class="content">${this.body}</p>
+                <p class="content"><slot name = "body">${this.body}</slot></p>
               </div>
               <div>
                 <button class="btn">
@@ -123,7 +124,8 @@ export class MyCard extends LitElement {
       title: { type: String },
       image: {type: String}, 
       alt: {type: String}, 
-      body: {type: String}
+      body: {type: String}, 
+      fancy: { type: Boolean, refelct: true }
     };
   }
 }
