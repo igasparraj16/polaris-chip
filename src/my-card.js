@@ -24,14 +24,13 @@ export class MyCard extends LitElement {
 
   static get styles() {
     return css`
-    :host([fancy]) {
-      display: block;
-      background-color: pink;
-      border: 2px solid fuchsia;
-      box-shadow: 10px 5px 5px red;
-    }
+      :host([fancy]) .card {
+        background-color: lightpink;
+        border: 2px solid fuchsia;
+      }
+
         .picture {
-          width: 268px;
+          max-width: 100%;
           border-radius: 8px;
           margin-bottom: 16px;
         }
@@ -41,9 +40,9 @@ export class MyCard extends LitElement {
         }
 
         .card {
-          width: 265px;
+          width: 300px;
           margin: 20px;
-          background-color: var(--my-card-background-color, #E5F4E3);
+          background-color: var(--my-card-background-color, white);
           padding: 20px 26px;
           border-radius: 12px;
           font-family: Helvetica;
@@ -73,6 +72,11 @@ export class MyCard extends LitElement {
         .content {
           font-size: 14px;
         }
+        
+        .flowing {
+          max-height: 70px;
+          overflow-y: auto;
+        }
 
         @media screen and (max-width: 800px) and (min-width: 500px) {
           .btn {
@@ -98,25 +102,37 @@ export class MyCard extends LitElement {
     `;
   }
 
+openChanged(e) {
+  console.log(e);
+  if (e.target.getAttribute('open') !== null) {
+    this.fancy = true;
+  }
+  else {
+    this.fancy = false;
+  }
+}
+
   render() {
-    return html`
-      <html>        
-          <div class="wrapper">
-            <div class="card">
-              <img class="picture" src="${this.image}" alt="${this.alt}" />
-              <div>
-                <h1 class="heading">${this.title}</h1>
-                <p class="content"><slot name = "body">${this.body}</slot></p>
-              </div>
-              <div>
-                <button class="btn">
-                  <b><a class="link" href="${this.button}">Details</a></b>
-                </button>
-              </div>
-            </div>
+    return html`    
+      <div class="wrapper">
+        <div class="card">
+          <img class="picture" src="${this.image}" alt="${this.alt}" />
+          <div>
+            <h1 class="heading">${this.title}</h1>
+              <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+                <summary>Description</summary>
+                <div class="flowing">
+                  <slot>${this.body}</slot>
+                </div>
+              </details>
           </div>
-        </body>
-      </html>
+          <div>
+            <button class="btn">
+              <b><a class="link" href="${this.button}">Details</a></b>
+            </button>
+          </div>
+        </div>
+      </div>
     `;}
 
   static get properties() {
@@ -125,7 +141,7 @@ export class MyCard extends LitElement {
       image: {type: String}, 
       alt: {type: String}, 
       body: {type: String}, 
-      fancy: { type: Boolean, refelct: true }
+      fancy: { type: Boolean, reflect: true }
     };
   }
 }
