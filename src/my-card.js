@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@haxtheweb/meme-maker/meme-maker.js";
 
 /**
  * Now it's your turn. Here's what we need to try and do:
@@ -29,76 +30,76 @@ export class MyCard extends LitElement {
         border: 2px solid fuchsia;
       }
 
-        .picture {
-          max-width: 100%;
-          border-radius: 8px;
-          margin-bottom: 16px;
-        }
+      meme-maker {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
 
-        .control {
-            font-family: Helvetica;
-        }
+      .heading {
+          font-family: Brush Script MT;
+      }
 
-        .card {
-          width: 300px;
-          margin: 20px;
-          background-color: var(--my-card-background-color, white);
-          padding: 20px 26px;
-          border-radius: 12px;
-          font-family: Helvetica;
-          box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
-        }
+      .card {
+        width: 300px;
+        margin: 20px;
+        background-color: var(--my-card-background-color, white);
+        padding: 20px 26px;
+        border-radius: 12px;
+        font-family: Helvetica;
+        box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
+      }
 
+      .btn {
+        background-color: #001B3D;
+        padding: 8px 12px;
+        border-radius: 8px;
+        display: none;
+      }
+
+      .btn:hover {
+        background-color: #6D326D;
+      }
+
+      .link {
+        text-decoration: none;
+        color: white;
+      }
+
+      .heading {
+        font-size: 28px;
+      }
+
+      .content {
+        font-size: 14px;
+      }
+      
+      .flowing {
+        max-height: 70px;
+        overflow-y: auto;
+      }
+
+      @media screen and (max-width: 800px) and (min-width: 500px) {
         .btn {
-          background-color: #001B3D;
-          padding: 8px 12px;
-          border-radius: 8px;
-          display: none;
+          display: block;
         }
+      }
 
-        .btn:hover {
-          background-color: #6D326D;
+      @media screen and (max-width: 500px) {
+        .main {
+          width: 200px;
         }
-
-        .link {
-          text-decoration: none;
-          color: white;
+        .picture {
+          width: 180px;
+          margin-bottom: 0px;
         }
-
         .heading {
-          font-size: 28px;
+          font-size: 24px;
         }
-
         .content {
-          font-size: 14px;
+          font-size: 12px;
         }
-        
-        .flowing {
-          max-height: 70px;
-          overflow-y: auto;
-        }
-
-        @media screen and (max-width: 800px) and (min-width: 500px) {
-          .btn {
-            display: block;
-          }
-        }
-
-        @media screen and (max-width: 500px) {
-          .main {
-            width: 200px;
-          }
-          .picture {
-            width: 180px;
-            margin-bottom: 0px;
-          }
-          .heading {
-            font-size: 24px;
-          }
-          .content {
-            font-size: 12px;
-          }
-        }
+      }
     `;
   }
 
@@ -116,7 +117,12 @@ openChanged(e) {
     return html`    
       <div class="wrapper">
         <div class="card">
-          <img class="picture" src="${this.image}" alt="${this.alt}" />
+          <meme-maker
+            alt="${this.alt}"
+            image-url="${this.image}"
+            bottom-text="is the best band"
+            top-text="${this.title}">
+          </meme-maker>
           <div>
             <h1 class="heading">${this.title}</h1>
               <details ?open="${this.fancy}" @toggle="${this.openChanged}">
